@@ -13,6 +13,8 @@ const threeV5=fs.readFileSync(new URL('../three-lab-v5.js',import.meta.url),'utf
 const lessonsV6=fs.readFileSync(new URL('../lesson-depth-v6.js',import.meta.url),'utf8');
 const simV6=fs.readFileSync(new URL('../simulation-lab-v6.js',import.meta.url),'utf8');
 const bookV6=fs.readFileSync(new URL('../textbook-depth-v6.js',import.meta.url),'utf8');
+const simV7=fs.readFileSync(new URL('../simulation-studio-v7.js',import.meta.url),'utf8');
+const runtime=fs.readFileSync(new URL('../netlify-runtime.js',import.meta.url),'utf8');
 for (const required of ['view-course','view-textbook','view-lab','view-formula','view-practical','view-mastery','view-extended','view-spec']) {
   if(!html.includes(required)) throw new Error(`Missing ${required}`);
 }
@@ -62,4 +64,13 @@ for(const feature of ['v6 · 3D experiment engine','Record 3D reading','Auto swe
 for(const feature of ['v6 synthesis','From measurement to a defendable density result','How to read a force–extension experiment like an examiner','Young modulus as a gradient and as an equation','RP4 from apparatus to final uncertainty statement']){
   if(!bookV6.includes(feature)) throw new Error(`Missing v6 textbook synthesis feature: ${feature}`);
 }
-console.log('Static v6 content smoke checks passed');
+for(const feature of ['v7 · Experiment Studio','Prediction first','Measurement realism','Instrument reading challenge','Loading / unloading evidence','Graph interpretation','Same material, different wire','Material property board','Data-quality inspector']){
+  if(!simV7.includes(feature)) throw new Error(`Missing v7 simulation feature: ${feature}`);
+}
+for(const feature of ['runCycle','annotationClick','Corrected reading','Permanent set predicted','Doubling diameter gives four times the area']){
+  if(!simV7.includes(feature)) throw new Error(`Missing v7 simulation behaviour: ${feature}`);
+}
+for(const ref of ['simulation-studio-v7.css','simulation-studio-v7.js']){
+  if(!runtime.includes(ref)) throw new Error(`Netlify runtime does not load ${ref}`);
+}
+console.log('Static v7 content smoke checks passed');
