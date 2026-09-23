@@ -10,6 +10,8 @@ const coach=fs.readFileSync(new URL('../exam-coach-v3.js',import.meta.url),'utf8
 const v4=fs.readFileSync(new URL('../learning-system-v4.js',import.meta.url),'utf8');
 const lessonsV5=fs.readFileSync(new URL('../lesson-visuals-v5.js',import.meta.url),'utf8');
 const threeV5=fs.readFileSync(new URL('../three-lab-v5.js',import.meta.url),'utf8');
+const lessonsV6=fs.readFileSync(new URL('../lesson-depth-v6.js',import.meta.url),'utf8');
+const simV6=fs.readFileSync(new URL('../simulation-lab-v6.js',import.meta.url),'utf8');
 for (const required of ['view-course','view-textbook','view-lab','view-formula','view-practical','view-mastery','view-extended','view-spec']) {
   if(!html.includes(required)) throw new Error(`Missing ${required}`);
 }
@@ -25,7 +27,7 @@ if(longAnswerCount!==12) throw new Error(`Expected 12 extended responses, found 
 for(const feature of ['autoSweep','exportCsv','compareMaterials','Live graph & data logger']){
   if(!sim.includes(feature)) throw new Error(`Missing simulation upgrade: ${feature}`);
 }
-for(const ref of ['learning-system-v4.js','visual-overhaul-v5.css','lesson-visuals-v5.js','three-lab-v5.js']){
+for(const ref of ['learning-system-v4.js','visual-overhaul-v5.css','lesson-visuals-v5.js','three-lab-v5.js','visual-overhaul-v6.css','lesson-depth-v6.js','simulation-lab-v6.js']){
   if(!coach.includes(ref)) throw new Error(`Exam coach/loader does not load ${ref}`);
 }
 for(const feature of [
@@ -47,4 +49,13 @@ for(const feature of ['Interactive 3D materials lab','WebGL Materials Laboratory
   if(!threeV5.includes(feature)) throw new Error(`Missing v5 3D feature: ${feature}`);
 }
 if(!threeV5.includes('three@0.186.0')) throw new Error('Three.js v5 renderer dependency not pinned');
-console.log('Static v5 content smoke checks passed');
+for(const feature of ['v6 · visual explanation','Second worked example · full reasoning','Exam question ladder','Move between representations']){
+  if(!lessonsV6.includes(feature)) throw new Error(`Missing v6 lesson feature: ${feature}`);
+}
+for(const lesson of ['density','hooke','force-extension','energy','stress-strain','young','curves','rp4']){
+  if(!lessonsV6.includes(`${lesson}:`) && !lessonsV6.includes(`'${lesson}':`)) throw new Error(`Missing v6 lesson depth for ${lesson}`);
+}
+for(const feature of ['v6 · 3D experiment engine','Record 3D reading','Auto sweep','Slow-motion load','best-fit gradient','Real measurement mode','Take micrometer reading','Guided 3D investigation','overlay material comparison']){
+  if(!simV6.includes(feature)) throw new Error(`Missing v6 3D experiment feature: ${feature}`);
+}
+console.log('Static v6 content smoke checks passed');
