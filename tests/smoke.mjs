@@ -16,6 +16,7 @@ const bookV6=fs.readFileSync(new URL('../textbook-depth-v6.js',import.meta.url),
 const simV7=fs.readFileSync(new URL('../simulation-studio-v7.js',import.meta.url),'utf8');
 const practicalV8=fs.readFileSync(new URL('../practical-studio-v8.js',import.meta.url),'utf8');
 const microV8=fs.readFileSync(new URL('../micrometer-3d-v8.js',import.meta.url),'utf8');
+const fidelityV9=fs.readFileSync(new URL('../simulation-fidelity-v9.js',import.meta.url),'utf8');
 const runtime=fs.readFileSync(new URL('../netlify-runtime.js',import.meta.url),'utf8');
 for (const required of ['view-course','view-textbook','view-lab','view-formula','view-practical','view-mastery','view-extended','view-spec']) if(!html.includes(required)) throw new Error(`Missing ${required}`);
 for (const ref of ['textbook-part1-v3.js','textbook-part2-v3.js','extended-bank-v3.js','simulation-upgrade-v3.js','exam-coach-v3.js']) if(!html.includes(ref)) throw new Error(`Missing base script reference: ${ref}`);
@@ -33,5 +34,7 @@ for(const feature of ['v6 synthesis','From measurement to a defendable density r
 for(const feature of ['v7 · Experiment Studio','Prediction first','Measurement realism','Instrument reading challenge','Loading / unloading evidence','Graph interpretation','Same material, different wire','Material property board','Data-quality inspector']) if(!simV7.includes(feature)) throw new Error(`Missing v7 simulation feature: ${feature}`);
 for(const feature of ['True Practical Mode','Full uncertainty laboratory','Graph construction mode','Examiner Graph Mode','Hidden-error practical challenge','Microscopic ↔ macroscopic split screen','Live graph cursor','Same material · different geometry','Same geometry · different materials','Energy animation + area tool','Material Design Challenge','Mystery Material Mode','Blind Practical Mode','Simulation Exam Mode','Practical competency checklist','Replay experiment','Teacher Challenge Builder','Photo / apparatus labelling','Variable-control trainer','Data-quality score','Paper 3 Simulation Challenge']) if(!practicalV8.includes(feature)) throw new Error(`Missing v8 practical feature: ${feature}`);
 for(const feature of ['Micrometer','Fracture close-up','Rotate thimble','necking / plastic deformation']) if(!microV8.includes(feature)) throw new Error(`Missing v8 3D instrument feature: ${feature}`);
-for(const ref of ['simulation-studio-v7.css','simulation-studio-v7.js','practical-studio-v8.css','practical-studio-v8.js','micrometer-3d-v8.js']) if(!runtime.includes(ref)) throw new Error(`Netlify runtime does not load ${ref}`);
-console.log('Static v8 content smoke checks passed');
+for(const feature of ['v9 · Experiment fidelity','Calibration laboratory','Repeated-trial statistics','Residual analysis','Error budget','End-of-practical report','v9 · Material-response playback','Advanced stress–strain curve studio','Plastic + strain hardening','Necking']) if(!fidelityV9.includes(feature)) throw new Error(`Missing v9 simulation fidelity feature: ${feature}`);
+for(const behavior of ['regression','drawResidual','generateTrial','reportText','stressAt','playCurve']) if(!fidelityV9.includes(behavior)) throw new Error(`Missing v9 simulation behavior: ${behavior}`);
+for(const ref of ['simulation-studio-v7.css','simulation-studio-v7.js','practical-studio-v8.css','practical-studio-v8.js','micrometer-3d-v8.js','simulation-fidelity-v9.css','simulation-fidelity-v9.js']) if(!runtime.includes(ref)) throw new Error(`Netlify runtime does not load ${ref}`);
+console.log('Static v9 content smoke checks passed');
