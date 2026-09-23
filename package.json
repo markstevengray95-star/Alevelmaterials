@@ -1,0 +1,11 @@
+{
+  "name": "alevel-materials",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node tests/smoke.mjs && node tests/netlify.mjs",
+    "check:syntax": "node --check app.js && node --check materials-data.js && node --check netlify-runtime.js && node --check service-worker.js",
+    "check": "npm run check:syntax && npm test",
+    "serve": "python3 -m http.server 4173"
+  }
+}
