@@ -52,4 +52,6 @@
   addCss('practical-studio-v8.css?v=8');
   addScript('practical-studio-v8.js?v=8');
   addScript('micrometer-3d-v8.js?v=8');
+  addCss('simulation-fidelity-v9.css?v=9');
+  addScript('simulation-fidelity-v9.js?v=9');
 })();
