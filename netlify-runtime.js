@@ -42,4 +42,18 @@
       });
     });
   }
+
+  // v7 simulation layer: loaded here so it sits on top of the established v5/v6 3D lab.
+  if (!document.querySelector('link[href*="simulation-studio-v7.css"]')) {
+    const link=document.createElement('link');
+    link.rel='stylesheet';
+    link.href='simulation-studio-v7.css?v=7';
+    document.head.appendChild(link);
+  }
+  if (!document.querySelector('script[src*="simulation-studio-v7.js"]')) {
+    const script=document.createElement('script');
+    script.src='simulation-studio-v7.js?v=7';
+    script.defer=true;
+    document.body.appendChild(script);
+  }
 })();
