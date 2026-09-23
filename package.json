@@ -1,10 +1,10 @@
 {
   "name": "alevel-materials",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "private": true,
   "scripts": {
     "test": "node tests/smoke.mjs && node tests/netlify.mjs",
-    "check:syntax": "node --check app.js && node --check materials-data.js && node --check textbook-visuals-v3.js && node --check textbook-part1-v3.js && node --check textbook-part2-v3.js && node --check extended-bank-v3.js && node --check simulation-upgrade-v3.js && node --check exam-coach-v3.js && node --check learning-system-v4.js && node --check lesson-visuals-v5.js && node --check three-lab-v5.js && node --check netlify-runtime.js && node --check service-worker.js",
+    "check:syntax": "node --check app.js && node --check materials-data.js && node --check textbook-visuals-v3.js && node --check textbook-part1-v3.js && node --check textbook-part2-v3.js && node --check extended-bank-v3.js && node --check simulation-upgrade-v3.js && node --check exam-coach-v3.js && node --check learning-system-v4.js && node --check lesson-visuals-v5.js && node --check three-lab-v5.js && node --check lesson-depth-v6.js && node --check simulation-lab-v6.js && node --check netlify-runtime.js && node --check service-worker.js",
     "check": "npm run check:syntax && npm test",
     "serve": "python3 -m http.server 4173"
   }
