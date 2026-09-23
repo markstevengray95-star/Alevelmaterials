@@ -22,4 +22,7 @@
   addCss('visual-overhaul-v5.css?v=5');
   addScript('lesson-visuals-v5.js?v=5');
   addScript('three-lab-v5.js?v=5');
+  addCss('visual-overhaul-v6.css?v=6');
+  addScript('lesson-depth-v6.js?v=6');
+  addScript('simulation-lab-v6.js?v=6');
 })();
