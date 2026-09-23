@@ -43,17 +43,13 @@
     });
   }
 
-  // v7 simulation layer: loaded here so it sits on top of the established v5/v6 3D lab.
-  if (!document.querySelector('link[href*="simulation-studio-v7.css"]')) {
-    const link=document.createElement('link');
-    link.rel='stylesheet';
-    link.href='simulation-studio-v7.css?v=7';
-    document.head.appendChild(link);
-  }
-  if (!document.querySelector('script[src*="simulation-studio-v7.js"]')) {
-    const script=document.createElement('script');
-    script.src='simulation-studio-v7.js?v=7';
-    script.defer=true;
-    document.body.appendChild(script);
-  }
+  const addCss=(href)=>{if(document.querySelector(`link[href*="${href.split('?')[0]}"]`))return;const link=document.createElement('link');link.rel='stylesheet';link.href=href;document.head.appendChild(link);};
+  const addScript=(src)=>{if(document.querySelector(`script[src*="${src.split('?')[0]}"]`))return;const script=document.createElement('script');script.src=src;script.defer=true;document.body.appendChild(script);};
+
+  // Advanced simulation layers sit on top of the established v5/v6 3D lab.
+  addCss('simulation-studio-v7.css?v=7');
+  addScript('simulation-studio-v7.js?v=7');
+  addCss('practical-studio-v8.css?v=8');
+  addScript('practical-studio-v8.js?v=8');
+  addScript('micrometer-3d-v8.js?v=8');
 })();
