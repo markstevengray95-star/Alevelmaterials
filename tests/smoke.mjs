@@ -12,6 +12,7 @@ const lessonsV5=fs.readFileSync(new URL('../lesson-visuals-v5.js',import.meta.ur
 const threeV5=fs.readFileSync(new URL('../three-lab-v5.js',import.meta.url),'utf8');
 const lessonsV6=fs.readFileSync(new URL('../lesson-depth-v6.js',import.meta.url),'utf8');
 const simV6=fs.readFileSync(new URL('../simulation-lab-v6.js',import.meta.url),'utf8');
+const bookV6=fs.readFileSync(new URL('../textbook-depth-v6.js',import.meta.url),'utf8');
 for (const required of ['view-course','view-textbook','view-lab','view-formula','view-practical','view-mastery','view-extended','view-spec']) {
   if(!html.includes(required)) throw new Error(`Missing ${required}`);
 }
@@ -27,7 +28,7 @@ if(longAnswerCount!==12) throw new Error(`Expected 12 extended responses, found 
 for(const feature of ['autoSweep','exportCsv','compareMaterials','Live graph & data logger']){
   if(!sim.includes(feature)) throw new Error(`Missing simulation upgrade: ${feature}`);
 }
-for(const ref of ['learning-system-v4.js','visual-overhaul-v5.css','lesson-visuals-v5.js','three-lab-v5.js','visual-overhaul-v6.css','lesson-depth-v6.js','simulation-lab-v6.js']){
+for(const ref of ['learning-system-v4.js','visual-overhaul-v5.css','lesson-visuals-v5.js','three-lab-v5.js','visual-overhaul-v6.css','lesson-depth-v6.js','simulation-lab-v6.js','textbook-depth-v6.js']){
   if(!coach.includes(ref)) throw new Error(`Exam coach/loader does not load ${ref}`);
 }
 for(const feature of [
@@ -57,5 +58,8 @@ for(const lesson of ['density','hooke','force-extension','energy','stress-strain
 }
 for(const feature of ['v6 · 3D experiment engine','Record 3D reading','Auto sweep','Slow-motion load','best-fit gradient','Real measurement mode','Take micrometer reading','Guided 3D investigation','overlay material comparison']){
   if(!simV6.includes(feature)) throw new Error(`Missing v6 3D experiment feature: ${feature}`);
+}
+for(const feature of ['v6 synthesis','From measurement to a defendable density result','How to read a force–extension experiment like an examiner','Young modulus as a gradient and as an equation','RP4 from apparatus to final uncertainty statement']){
+  if(!bookV6.includes(feature)) throw new Error(`Missing v6 textbook synthesis feature: ${feature}`);
 }
 console.log('Static v6 content smoke checks passed');
