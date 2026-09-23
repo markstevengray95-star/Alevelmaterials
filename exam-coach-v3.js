@@ -15,6 +15,11 @@
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install);else install();
 })();
 (() => {
-  if (!document.querySelector('link[href*="learning-system-v4.css"]')) {const link=document.createElement('link');link.rel='stylesheet';link.href='learning-system-v4.css?v=4';document.head.appendChild(link);}
-  if (!document.querySelector('script[src*="learning-system-v4.js"]')) {const s=document.createElement('script');s.src='learning-system-v4.js?v=4';s.defer=true;document.body.appendChild(s);}
+  const addCss=(href)=>{if(document.querySelector(`link[href*="${href.split('?')[0]}"]`))return;const link=document.createElement('link');link.rel='stylesheet';link.href=href;document.head.appendChild(link);};
+  const addScript=(src)=>{if(document.querySelector(`script[src*="${src.split('?')[0]}"]`))return;const s=document.createElement('script');s.src=src;s.defer=true;document.body.appendChild(s);};
+  addCss('learning-system-v4.css?v=4');
+  addScript('learning-system-v4.js?v=4');
+  addCss('visual-overhaul-v5.css?v=5');
+  addScript('lesson-visuals-v5.js?v=5');
+  addScript('three-lab-v5.js?v=5');
 })();
