@@ -14,7 +14,7 @@ for (const ref of ['textbook-part1-v3.js','textbook-part2-v3.js','extended-bank-
 }
 if(!data.includes('window.MATERIALS_DATA')) throw new Error('Missing data object');
 if(!js.includes('renderLesson')) throw new Error('Missing lesson renderer');
-const chapterCount=(textbook1.match(/title:'\d ·/g)||[]).length+(textbook2.match(/title:'\d ·/g)||[]).length;
+const chapterCount=(textbook1.match(/title:'/g)||[]).length+(textbook2.match(/title:'/g)||[]).length;
 if(chapterCount!==9) throw new Error(`Expected 9 textbook chapters, found ${chapterCount}`);
 const longAnswerCount=(extended.match(/marks:(6|8),q:/g)||[]).length;
 if(longAnswerCount!==12) throw new Error(`Expected 12 extended responses, found ${longAnswerCount}`);
