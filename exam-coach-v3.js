@@ -25,4 +25,5 @@
   addCss('visual-overhaul-v6.css?v=6');
   addScript('lesson-depth-v6.js?v=6');
   addScript('simulation-lab-v6.js?v=6');
+  addScript('textbook-depth-v6.js?v=6');
 })();
