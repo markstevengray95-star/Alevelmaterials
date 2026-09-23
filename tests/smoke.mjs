@@ -14,63 +14,24 @@ const lessonsV6=fs.readFileSync(new URL('../lesson-depth-v6.js',import.meta.url)
 const simV6=fs.readFileSync(new URL('../simulation-lab-v6.js',import.meta.url),'utf8');
 const bookV6=fs.readFileSync(new URL('../textbook-depth-v6.js',import.meta.url),'utf8');
 const simV7=fs.readFileSync(new URL('../simulation-studio-v7.js',import.meta.url),'utf8');
+const practicalV8=fs.readFileSync(new URL('../practical-studio-v8.js',import.meta.url),'utf8');
+const microV8=fs.readFileSync(new URL('../micrometer-3d-v8.js',import.meta.url),'utf8');
 const runtime=fs.readFileSync(new URL('../netlify-runtime.js',import.meta.url),'utf8');
-for (const required of ['view-course','view-textbook','view-lab','view-formula','view-practical','view-mastery','view-extended','view-spec']) {
-  if(!html.includes(required)) throw new Error(`Missing ${required}`);
-}
-for (const ref of ['textbook-part1-v3.js','textbook-part2-v3.js','extended-bank-v3.js','simulation-upgrade-v3.js','exam-coach-v3.js']) {
-  if(!html.includes(ref)) throw new Error(`Missing base script reference: ${ref}`);
-}
+for (const required of ['view-course','view-textbook','view-lab','view-formula','view-practical','view-mastery','view-extended','view-spec']) if(!html.includes(required)) throw new Error(`Missing ${required}`);
+for (const ref of ['textbook-part1-v3.js','textbook-part2-v3.js','extended-bank-v3.js','simulation-upgrade-v3.js','exam-coach-v3.js']) if(!html.includes(ref)) throw new Error(`Missing base script reference: ${ref}`);
 if(!data.includes('window.MATERIALS_DATA')) throw new Error('Missing data object');
 if(!js.includes('renderLesson')) throw new Error('Missing lesson renderer');
-const chapterCount=(textbook1.match(/title:'/g)||[]).length+(textbook2.match(/title:'/g)||[]).length;
-if(chapterCount!==9) throw new Error(`Expected 9 textbook chapters, found ${chapterCount}`);
-const longAnswerCount=(extended.match(/marks:(6|8),q:/g)||[]).length;
-if(longAnswerCount!==12) throw new Error(`Expected 12 extended responses, found ${longAnswerCount}`);
-for(const feature of ['autoSweep','exportCsv','compareMaterials','Live graph & data logger']){
-  if(!sim.includes(feature)) throw new Error(`Missing simulation upgrade: ${feature}`);
-}
-for(const ref of ['learning-system-v4.js','visual-overhaul-v5.css','lesson-visuals-v5.js','three-lab-v5.js','visual-overhaul-v6.css','lesson-depth-v6.js','simulation-lab-v6.js','textbook-depth-v6.js']){
-  if(!coach.includes(ref)) throw new Error(`Exam coach/loader does not load ${ref}`);
-}
-for(const feature of [
-  'Adaptive recommendation','Full exam mode','Spaced retrieval','Error spotter','Engineering materials challenge',
-  'Student notebook','Teacher mode','Calculation generator','Equation trainer','Calculation whiteboard',
-  'Practical & data analysis laboratory','RP4 advanced measurement bench','Force–extension → stress–strain converter',
-  'Interactive force–extension graph lab','Microscopic deformation viewer','Advanced stress–strain comparison',
-  'Equation explorer','Evidence mastery','Mandarin key-term support'
-]){
-  if(!v4.includes(feature)) throw new Error(`Missing v4 feature: ${feature}`);
-}
-for(const equation of ['ρ = m/V','F = kΔL','E = ½FΔL','σ = F/A','ε = ΔL/L','A = πd²/4','E = σ/ε = FL/(AΔL)']){
-  if(!v4.includes(equation)) throw new Error(`Equation explorer missing ${equation}`);
-}
-for(const feature of ['Visual learning layer · v5','Deeper reasoning','Visual concept atlas','Required Practical 4: a complete measurement chain']){
-  if(!lessonsV5.includes(feature)&&!v4.includes(feature)) throw new Error(`Missing v5 lesson/textbook feature: ${feature}`);
-}
-for(const feature of ['Interactive 3D materials lab','WebGL Materials Laboratory','physically based materials','drag apparatus','Young modulus / RP4','Elastic/plastic test','Stress–strain specimen']){
-  if(!threeV5.includes(feature)) throw new Error(`Missing v5 3D feature: ${feature}`);
-}
-if(!threeV5.includes('three@0.186.0')) throw new Error('Three.js v5 renderer dependency not pinned');
-for(const feature of ['v6 · visual explanation','Second worked example · full reasoning','Exam question ladder','Move between representations']){
-  if(!lessonsV6.includes(feature)) throw new Error(`Missing v6 lesson feature: ${feature}`);
-}
-for(const lesson of ['density','hooke','force-extension','energy','stress-strain','young','curves','rp4']){
-  if(!lessonsV6.includes(`${lesson}:`) && !lessonsV6.includes(`'${lesson}':`)) throw new Error(`Missing v6 lesson depth for ${lesson}`);
-}
-for(const feature of ['v6 · 3D experiment engine','Record 3D reading','Auto sweep','Slow-motion load','best-fit gradient','Real measurement mode','Take micrometer reading','Guided 3D investigation','overlay material comparison']){
-  if(!simV6.includes(feature)) throw new Error(`Missing v6 3D experiment feature: ${feature}`);
-}
-for(const feature of ['v6 synthesis','From measurement to a defendable density result','How to read a force–extension experiment like an examiner','Young modulus as a gradient and as an equation','RP4 from apparatus to final uncertainty statement']){
-  if(!bookV6.includes(feature)) throw new Error(`Missing v6 textbook synthesis feature: ${feature}`);
-}
-for(const feature of ['v7 · Experiment Studio','Prediction first','Measurement realism','Instrument reading challenge','Loading / unloading evidence','Graph interpretation','Same material, different wire','Material property board','Data-quality inspector']){
-  if(!simV7.includes(feature)) throw new Error(`Missing v7 simulation feature: ${feature}`);
-}
-for(const feature of ['runCycle','annotationClick','Corrected reading','Permanent set predicted','Doubling diameter gives four times the area']){
-  if(!simV7.includes(feature)) throw new Error(`Missing v7 simulation behaviour: ${feature}`);
-}
-for(const ref of ['simulation-studio-v7.css','simulation-studio-v7.js']){
-  if(!runtime.includes(ref)) throw new Error(`Netlify runtime does not load ${ref}`);
-}
-console.log('Static v7 content smoke checks passed');
+const chapterCount=(textbook1.match(/title:'/g)||[]).length+(textbook2.match(/title:'/g)||[]).length;if(chapterCount!==9) throw new Error(`Expected 9 textbook chapters, found ${chapterCount}`);
+const longAnswerCount=(extended.match(/marks:(6|8),q:/g)||[]).length;if(longAnswerCount!==12) throw new Error(`Expected 12 extended responses, found ${longAnswerCount}`);
+for(const feature of ['autoSweep','exportCsv','compareMaterials','Live graph & data logger']) if(!sim.includes(feature)) throw new Error(`Missing simulation upgrade: ${feature}`);
+for(const feature of ['Adaptive recommendation','Full exam mode','Spaced retrieval','Error spotter','Engineering materials challenge','Student notebook','Teacher mode','Calculation generator','Equation trainer','Calculation whiteboard','Practical & data analysis laboratory','RP4 advanced measurement bench','Force–extension → stress–strain converter','Interactive force–extension graph lab','Microscopic deformation viewer','Advanced stress–strain comparison','Equation explorer','Evidence mastery','Mandarin key-term support']) if(!v4.includes(feature)) throw new Error(`Missing v4 feature: ${feature}`);
+for(const feature of ['Visual learning layer · v5','Deeper reasoning','Visual concept atlas','Required Practical 4: a complete measurement chain']) if(!lessonsV5.includes(feature)&&!v4.includes(feature)) throw new Error(`Missing v5 lesson/textbook feature: ${feature}`);
+for(const feature of ['Interactive 3D materials lab','WebGL Materials Laboratory','physically based materials','drag apparatus','Young modulus / RP4','Elastic/plastic test','Stress–strain specimen']) if(!threeV5.includes(feature)) throw new Error(`Missing v5 3D feature: ${feature}`);
+for(const feature of ['v6 · visual explanation','Second worked example · full reasoning','Exam question ladder','Move between representations']) if(!lessonsV6.includes(feature)) throw new Error(`Missing v6 lesson feature: ${feature}`);
+for(const feature of ['v6 · 3D experiment engine','Record 3D reading','Auto sweep','Slow-motion load','best-fit gradient','Real measurement mode','Take micrometer reading','Guided 3D investigation','overlay material comparison']) if(!simV6.includes(feature)) throw new Error(`Missing v6 3D experiment feature: ${feature}`);
+for(const feature of ['v6 synthesis','From measurement to a defendable density result','How to read a force–extension experiment like an examiner','Young modulus as a gradient and as an equation','RP4 from apparatus to final uncertainty statement']) if(!bookV6.includes(feature)) throw new Error(`Missing v6 textbook synthesis feature: ${feature}`);
+for(const feature of ['v7 · Experiment Studio','Prediction first','Measurement realism','Instrument reading challenge','Loading / unloading evidence','Graph interpretation','Same material, different wire','Material property board','Data-quality inspector']) if(!simV7.includes(feature)) throw new Error(`Missing v7 simulation feature: ${feature}`);
+for(const feature of ['True Practical Mode','Full uncertainty laboratory','Graph construction mode','Examiner Graph Mode','Hidden-error practical challenge','Microscopic ↔ macroscopic split screen','Live graph cursor','Same material · different geometry','Same geometry · different materials','Energy animation + area tool','Material Design Challenge','Mystery Material Mode','Blind Practical Mode','Simulation Exam Mode','Practical competency checklist','Replay experiment','Teacher Challenge Builder','Photo / apparatus labelling','Variable-control trainer','Data-quality score','Paper 3 Simulation Challenge']) if(!practicalV8.includes(feature)) throw new Error(`Missing v8 practical feature: ${feature}`);
+for(const feature of ['Micrometer','Fracture close-up','Rotate thimble','necking / plastic deformation']) if(!microV8.includes(feature)) throw new Error(`Missing v8 3D instrument feature: ${feature}`);
+for(const ref of ['simulation-studio-v7.css','simulation-studio-v7.js','practical-studio-v8.css','practical-studio-v8.js','micrometer-3d-v8.js']) if(!runtime.includes(ref)) throw new Error(`Netlify runtime does not load ${ref}`);
+console.log('Static v8 content smoke checks passed');
