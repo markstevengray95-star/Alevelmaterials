@@ -14,4 +14,5 @@
   addCss('practical-studio-v8.css?v=8');addScript('practical-studio-v8.js?v=8');addScript('micrometer-3d-v8.js?v=8');
   addCss('simulation-fidelity-v9.css?v=9');addScript('simulation-fidelity-v9.js?v=9');
   addCss('learning-system-v10.css?v=10');addScript('learning-system-v10.js?v=10');
+  addCss('learning-3d-v11.css?v=11');addScript('lesson-depth-v11.js?v=11');addScript('simulation-suite-v11.js?v=11');
 })();
