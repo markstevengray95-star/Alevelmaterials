@@ -6,6 +6,17 @@
   const XLSX_CDN='https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';
   let threePromise=null,xlsxPromise=null;
 
+  // Existing v5/v8 scenes import the pinned CDN URL directly. On built deployments,
+  // remap that exact module specifier to the locally generated vendor copy so those
+  // mature scenes become offline-capable without duplicating their rendering code.
+  if(!document.querySelector('script[data-materials-import-map]')){
+    const map=document.createElement('script');
+    map.type='importmap';
+    map.dataset.materialsImportMap='v10';
+    map.textContent=JSON.stringify({imports:{[THREE_CDN]:THREE_LOCAL+'?v=0.186.0'}});
+    document.head.appendChild(map);
+  }
+
   async function importThree(){
     if(threePromise)return threePromise;
     threePromise=(async()=>{
