@@ -11,6 +11,7 @@ const simV7=fs.readFileSync(new URL('../simulation-studio-v7.js',import.meta.url
 const practicalV8=fs.readFileSync(new URL('../practical-studio-v8.js',import.meta.url),'utf8');
 const fidelityV9=fs.readFileSync(new URL('../simulation-fidelity-v9.js',import.meta.url),'utf8');
 const assetsV10=fs.readFileSync(new URL('../asset-loader-v10.js',import.meta.url),'utf8');
+const rendererV10=fs.readFileSync(new URL('../three-performance-v10.js',import.meta.url),'utf8');
 const v10=fs.readFileSync(new URL('../learning-system-v10.js',import.meta.url),'utf8');
 const runtime=fs.readFileSync(new URL('../netlify-runtime.js',import.meta.url),'utf8');
 for(const required of ['view-course','view-textbook','view-lab','view-formula','view-practical','view-mastery','view-extended','view-spec'])if(!html.includes(required))throw new Error(`Missing ${required}`);
@@ -23,7 +24,8 @@ for(const feature of ['Record 3D reading','Slow-motion load','best-fit gradient'
 for(const feature of ['Prediction first','Loading / unloading evidence','Data-quality inspector'])if(!simV7.includes(feature))throw new Error(`Missing v7 feature: ${feature}`);
 for(const feature of ['True Practical Mode','Full uncertainty laboratory','Mystery Material Mode','Simulation Exam Mode','Teacher Challenge Builder','Paper 3 Simulation Challenge'])if(!practicalV8.includes(feature))throw new Error(`Missing v8 feature: ${feature}`);
 for(const feature of ['Calibration laboratory','Residual analysis','Repeated-trial statistics','Error budget','End-of-practical report'])if(!fidelityV9.includes(feature))throw new Error(`Missing v9 feature: ${feature}`);
-for(const feature of ['three.module.min.js','xlsx.full.min.js','Ultra 3D','2D fallback','materials-performance-change'])if(!assetsV10.includes(feature))throw new Error(`Missing v10 asset/performance feature: ${feature}`);
+for(const feature of ['xlsx.full.min.js','Ultra 3D','2D fallback','materials-performance-change','three-performance-v10.js'])if(!assetsV10.includes(feature))throw new Error(`Missing v10 asset/performance feature: ${feature}`);
+for(const feature of ['WebGLRenderer','pixelRatio','antialias','shadows'])if(!rendererV10.includes(feature))throw new Error(`Missing v10 renderer behavior: ${feature}`);
 for(const feature of ['AI-style Practical Examiner','Practical Viva Mode','Real Data → Simulation comparison','AO Analytics','Dynamic Paper 3 Generator','Misconception Engine','Adaptive simulation difficulty','Mastery journey','Student Practical Portfolio','Teacher Class Dashboard','Teacher Assignment Mode','Hinge Question Mode','Interactive equation derivation','Dimensional-analysis trainer','Graph Drawing From Scratch','Unknown Apparatus Challenge','Live Stress–Strain Timeline','Failure Library','Exam Answer Builder','Automatic Intervention Generator'])if(!v10.includes(feature))throw new Error(`Missing v10 learning feature: ${feature}`);
 for(const behavior of ['loadXlsx','recordAO','addMisconception','generateInterventions','createAssignment','drawStressTimeline','analyseRows'])if(!v10.includes(behavior)&&!assetsV10.includes(behavior))throw new Error(`Missing v10 behavior: ${behavior}`);
 for(const ref of ['learning-system-v10.css','learning-system-v10.js'])if(!runtime.includes(ref))throw new Error(`Runtime does not load ${ref}`);
